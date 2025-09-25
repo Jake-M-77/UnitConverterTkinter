@@ -13,12 +13,16 @@ def calculateConversion():
 
         if userChosenUnit == "Mph":
             result = userInput * 0.621371
+            result = f"{result} Mph"
         elif userChosenUnit == "Kmh":
             result = userInput * 1.60934
+            result = f"{result} Kmh"
         elif userChosenUnit == "Celsius":
             result = (userInput - 32) * (5 / 9)
+            result = f"{result} °C"
         elif userChosenUnit == "Fahrenheit":
-            result = (userInput * 1.8) + 32 
+            result = (userInput * 1.8) + 32
+            result = f"{result} °F"
 
         output.config(text=f"Result: {result}")
 
@@ -29,20 +33,22 @@ def calculateConversion():
 
 window = Tk()
 
+window.config(bg="#d6e6f2")
+
 chosenConversionUnit = StringVar()
 
-chosenConversionUnit.set("Mph")
+chosenConversionUnit.set("Kmh")
 
 title = Label(window, text="Unit Converter", width=30, font="Verdana, 20")
 title.pack()
 
-Unit = Entry(window)
+Unit = Entry(window, fg="#0a1f44", font="Verdana, 20")
 Unit.pack()
 
-radio1 = Radiobutton(window, text="Mph -> Kmh", variable=chosenConversionUnit, value="Kmh", command=updateButton)
-radio2 = Radiobutton(window, text="Kmh -> Mph", variable=chosenConversionUnit, value="Mph", command=updateButton)
-radio3 = Radiobutton(window, text="Celsius -> Fahrenheit", variable=chosenConversionUnit, value="Fahrenheit", command=updateButton)
-radio4 = Radiobutton(window, text="Fahrenheit -> Celsius", variable=chosenConversionUnit, value="Celsius", command=updateButton)
+radio1 = Radiobutton(window, font="Verdana, 17", text="Mph -> Kmh", variable=chosenConversionUnit, value="Kmh", command=updateButton)
+radio2 = Radiobutton(window, font="Verdana, 17", text="Kmh -> Mph", variable=chosenConversionUnit, value="Mph", command=updateButton)
+radio3 = Radiobutton(window, font="Verdana, 17", text="Celsius -> Fahrenheit", variable=chosenConversionUnit, value="Fahrenheit", command=updateButton)
+radio4 = Radiobutton(window, font="Verdana, 17", text="Fahrenheit -> Celsius", variable=chosenConversionUnit, value="Celsius", command=updateButton)
 
 
 
@@ -51,12 +57,17 @@ radio2.pack()
 radio3.pack()
 radio4.pack()
 
-button = Button(window, text=f"Convert To {chosenConversionUnit.get()}", command=calculateConversion)
-button.pack()
+button = Button(window, fg="#0a1f44", font="Verdana, 17", text=f"Convert to {chosenConversionUnit.get()}", command=calculateConversion)
+button.pack(pady=20)
 
-output = Label(window)
+output = Label(window, font="Verdana, 20")
 output.pack()
 
+elements = [ title, radio1, radio2, radio3, radio4, output]
 
+for element in elements:
+    element.config(background="#d6e6f2", fg="#0a1f44")
+
+    
 
 window.mainloop()
