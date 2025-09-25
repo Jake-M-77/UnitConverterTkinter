@@ -12,13 +12,13 @@ def calculateConversion():
         userInput = float(Unit.get())
 
         if userChosenUnit == "Mph":
-            result = userInput * 20
+            result = userInput * 0.621371
         elif userChosenUnit == "Kmh":
-            result = userInput * 10
+            result = userInput * 1.60934
         elif userChosenUnit == "Celsius":
-            result = userInput * 5
+            result = (userInput - 32) * (5 / 9)
         elif userChosenUnit == "Fahrenheit":
-            result = userInput * 2
+            result = (userInput * 1.8) + 32 
 
         output.config(text=f"Result: {result}")
 
@@ -39,10 +39,10 @@ title.pack()
 Unit = Entry(window)
 Unit.pack()
 
-radio1 = Radiobutton(window, text="Kmh -> Mph", variable=chosenConversionUnit, value="Mph", command=updateButton)
-radio2 = Radiobutton(window, text="Mph -> Kmh", variable=chosenConversionUnit, value="Kmh", command=updateButton)
-radio3 = Radiobutton(window, text="Fahrenheit -> Celsius", variable=chosenConversionUnit, value="Celsius", command=updateButton)
-radio4 = Radiobutton(window, text="Celsius -> Fahrenheit", variable=chosenConversionUnit, value="Fahrenheit", command=updateButton)
+radio1 = Radiobutton(window, text="Mph -> Kmh", variable=chosenConversionUnit, value="Kmh", command=updateButton)
+radio2 = Radiobutton(window, text="Kmh -> Mph", variable=chosenConversionUnit, value="Mph", command=updateButton)
+radio3 = Radiobutton(window, text="Celsius -> Fahrenheit", variable=chosenConversionUnit, value="Fahrenheit", command=updateButton)
+radio4 = Radiobutton(window, text="Fahrenheit -> Celsius", variable=chosenConversionUnit, value="Celsius", command=updateButton)
 
 
 
