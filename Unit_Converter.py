@@ -5,12 +5,33 @@ def updateButton():
     button.config(text=f"Convert to {chosenConversionUnit.get()}")
 
 
+def calculateConversion():
+    userChosenUnit = chosenConversionUnit.get()
+
+    try:
+        userInput = float(Unit.get())
+
+        if userChosenUnit == "Mph":
+            result = userInput * 20
+        elif userChosenUnit == "Kmh":
+            result = userInput * 10
+        elif userChosenUnit == "Celsius":
+            result = userInput * 5
+        elif userChosenUnit == "Fahrenheit":
+            result = userInput * 2
+
+        output.config(text=f"Result: {result}")
+
+    except ValueError:
+        output.config(text="Invalid Input!")
+        
+
+
 window = Tk()
 
 chosenConversionUnit = StringVar()
 
 chosenConversionUnit.set("Mph")
-
 
 title = Label(window, text="Unit Converter", width=30, font="Verdana, 20")
 title.pack()
@@ -30,8 +51,11 @@ radio2.pack()
 radio3.pack()
 radio4.pack()
 
-button = Button(window, text=f"Convert To {chosenConversionUnit.get()}")
+button = Button(window, text=f"Convert To {chosenConversionUnit.get()}", command=calculateConversion)
 button.pack()
+
+output = Label(window)
+output.pack()
 
 
 
